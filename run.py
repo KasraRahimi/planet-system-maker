@@ -29,7 +29,7 @@ class Angle:
 
 W, H = 16*60, 9*60
 SCALE = 1/1e6  # 1:1000000 ration in real life
-EARTH_MASS = 5.9736e24
+timestep = 60 * 60  # 1 hour per frame ~ 1 min per second
 planets = []
 speed, direction = 0, Angle(0)
 radius = 5
@@ -48,22 +48,37 @@ def drawPlanet(planet : Planet):
     pygame.draw.circle(window, color, pos, radius)
 
 def createPlanet(mass, position, color, speed, direction):
-    dx = cos(direction) * speed
-    dy = sin(direction) * speed
-    planets.appent(
-        Planet(mass, color, position, dx, dy, radius)
+    dx = cos(direction.value) * speed
+    dy = sin(direction.value) * speed
+    x = (position[0] - W/2) / SCALE
+    y = (position[1] - H/2) / SCALE
+    planets.append(
+        Planet(mass, color, (x, y), dx, dy, radius)
     )
 
 def main():
     is_running = True
+    mass = 5.9736e24
 
     while is_running:
         window.fill(black)
+        pos = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_running = False
-        pos = pygame.mouse.get_pos()
-        pygame.draw.circle(window, blue, pos, 30)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    mass *= 1.25
+                if event.key == pygame.K_e:
+                    mass /= 1.25
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    createPlanet(mass, pos, blue, speed, direction)
+
+        for planet in planets:
+            drawPlanet(planet)
+            planet.updatePosition(planets)
+        pygame.draw.circle(window, blue, pos, radius)
         pygame.display.update()
         clock.tick(60)
 
