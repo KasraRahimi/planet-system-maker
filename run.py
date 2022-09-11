@@ -3,16 +3,19 @@ from math import cos, sin, pi
 import pygame
 
 # ~ simple color list ~
-blue = (0,0,255)
+blue = (0, 0, 255)
 black = (0, 0, 0)
 white = (255, 255, 255)
 red = (255, 0, 0)
 navy = (0, 0, 150)
 green = (0, 128, 0)
 grey = (128, 128, 128)
-yellow = (255,215,0)
-orange = (255,140,0)
-khaki = (240,230,140)
+yellow = (255, 215, 0)
+orange = (255, 140, 0)
+khaki = (240, 230, 140)
+colors = (
+    blue, black, white, red, navy, green, grey, yellow, orange, khaki
+)
 # =====================
 
 class Angle:
@@ -58,10 +61,12 @@ def main():
     mass = 5.9736e24
     speed, direction = 0, Angle(0)
     radius = 10
+    currentColorIndex = 0
     clock = pygame.time.Clock()
 
     while is_running:
         window.fill(black)
+        currentColor = colors[currentColorIndex]
         pos = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -79,17 +84,27 @@ def main():
                     direction.increaseValue(pi/4)
                 if event.key == pygame.K_d:
                     direction.increaseValue(-pi/4)
+                if event.key == pygame.K_r:
+                    if currentColorIndex == 0:
+                        currentColorIndex = len(colors) - 1
+                    else:
+                        currentColorIndex -= 1
+                if event.key == pygame.K_t:
+                    if currentColorIndex + 1 == len(colors):
+                        currentColorIndex = 0
+                    else:
+                        currentColorIndex += 1
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    createPlanet(mass, pos, blue, speed, direction, radius)
+                    createPlanet(mass, pos, currentColor, speed, direction, radius)
 
         for planet in planets:
             drawPlanet(planet)
             planet.updatePosition(planets)
-        pygame.draw.circle(window, blue, pos, radius)
+        pygame.draw.circle(window, currentColor, pos, radius)
         end = (pos[0] + speed/50 * cos(direction.value), 
                 pos[1] + speed/50 * sin(direction.value))
-        pygame.draw.line(window, blue, pos, end, 2)
+        pygame.draw.line(window, currentColor, pos, end, 2)
         pygame.display.update()
         clock.tick(60)
 
