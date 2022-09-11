@@ -28,7 +28,7 @@ class Angle:
 
 
 W, H = 16*60, 9*60
-SCALE = 3/1e7  # 1:1000000 ration in real life
+SCALE = 1/1e7  # 1:1000000 ration in real life
 timestep = 60 * 60
 planets = []
 
@@ -75,6 +75,10 @@ def main():
                     speed += 1e3
                 if event.key == pygame.K_s:
                     speed -= 1e3
+                if event.key == pygame.K_a:
+                    direction.increaseValue(pi/4)
+                if event.key == pygame.K_d:
+                    direction.increaseValue(-pi/4)
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     createPlanet(mass, pos, blue, speed, direction, radius)
@@ -83,6 +87,9 @@ def main():
             drawPlanet(planet)
             planet.updatePosition(planets)
         pygame.draw.circle(window, blue, pos, radius)
+        end = (pos[0] + speed/50 * cos(direction.value), 
+                pos[1] + speed/50 * sin(direction.value))
+        pygame.draw.line(window, blue, pos, end, 2)
         pygame.display.update()
         clock.tick(60)
 
