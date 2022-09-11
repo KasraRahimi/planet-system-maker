@@ -52,9 +52,11 @@ class Planet:
             sumFx += self.calculateForce(planet, True)[0]
             sumFy += self.calculateForce(planet, True)[1]
         
+        x, y = self.x, self.y
         ddx = sumFx / self.mass
         ddy = sumFy / self.mass
         self.dx += ddx * timestep
         self.dy += ddy * timestep
-        self.x += self.dx * timestep
-        self.y += self.dy * timestep
+        x += self.dx * timestep
+        y += self.dy * timestep
+        self.pos = (x, y)
