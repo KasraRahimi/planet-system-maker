@@ -72,9 +72,9 @@ def main():
                 if event.key == pygame.K_e:
                     mass *= 1.25
                 if event.key == pygame.K_w:
-                    speed += 100
+                    speed += 1e3
                 if event.key == pygame.K_s:
-                    speed -= 100
+                    speed -= 1e3
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     createPlanet(mass, pos, blue, speed, direction, radius)
