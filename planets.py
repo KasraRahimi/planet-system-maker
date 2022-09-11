@@ -31,12 +31,12 @@ class Planet:
     def calculateForce(self, other, is_vector=False):
         m1 = self.mass
         m2 = other.mass
-        r = self.calculateDistance(other, True)
+        r = self.calculateDistance(other)
         F = self.G * m1 * m2 / r**2
 
         if is_vector:
-            deltaX = self.calculateDistance()[0]
-            deltaY = self.calculateDistance()[1]
+            deltaX = self.calculateDistance(other, True)[0]
+            deltaY = self.calculateDistance(other, True)[1]
 
             Fx = F * deltaX / r
             Fy = F * deltaY /r
