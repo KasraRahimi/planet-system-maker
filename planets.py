@@ -1,6 +1,5 @@
 
 class Planet:
-    timestep = 60 * 60  # 1 hour per frame
     G = 6.6743e-11
 
     def __init__(self, mass, color, pos=(0, 0), dx=0, dy=0, radius=5):
@@ -45,7 +44,7 @@ class Planet:
         else:
             return F
     
-    def updatePosition(self, planets : list):
+    def updatePosition(self, planets : list, timestep=3600):
         sumFx, sumFy = 0, 0
         for planet in planets:
             if planet == self:
@@ -55,7 +54,7 @@ class Planet:
         
         ddx = sumFx / self.mass
         ddy = sumFy / self.mass
-        self.dx += ddx
-        self.dy += ddy
-        self.x += self.dx
-        self.y += self.dy
+        self.dx += ddx * timestep
+        self.dy += ddy * timestep
+        self.x += self.dx * timestep
+        self.y += self.dy * timestep
