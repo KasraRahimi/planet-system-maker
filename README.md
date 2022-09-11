@@ -1,0 +1,2 @@
+# Planet Simulation Game
+Another fun challenge I've given myself. I absolutely love creating physics simulations, so I'm going to attempt to make a more controllable version of my previous planet simulation game. The intention is to allow the user to make planets and see how they behave under each other's gravitational influence. I don't intend to add any collision physics, however I may decide to code some in at some later date.
