@@ -28,8 +28,8 @@ class Angle:
 
 
 W, H = 16*60, 9*60
-SCALE = 1/1e7  # 1:1000000 ration in real life
-timestep = 60 * 30
+SCALE = 3/1e7  # 1:1000000 ration in real life
+timestep = 60 * 60
 planets = []
 
 pygame.init()
@@ -74,7 +74,7 @@ def main():
                 if event.key == pygame.K_w:
                     speed += 100
                 if event.key == pygame.K_s:
-                    speed -+ 100
+                    speed -= 100
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     createPlanet(mass, pos, blue, speed, direction, radius)
