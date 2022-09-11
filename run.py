@@ -23,8 +23,8 @@ window = pygame.display.set_mode((W, H))
 pygame.display.set_caption("planet system simulator")
 
 def drawPlanet(planet : Planet):
-    x = planet.x * scale + W/2
-    y = planet.y * scale + H/2
+    x = planet.x * SCALE + W/2
+    y = planet.y * SCALE + H/2
     pos = (x, y)
     radius = planet.radius
 
