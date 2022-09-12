@@ -31,8 +31,8 @@ class Angle:
 
 
 W, H = 16*60, 9*60
-SCALE = 1/1e7  # 1:1000000 ration in real life
-timestep = 60 * 60
+SCALE = 1/1e8  # 1:1000000 ration in real life
+timestep = 60
 planets = []
 
 pygame.init()
