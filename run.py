@@ -56,6 +56,14 @@ def createPlanet(mass, position, color, speed, direction, radius):
         Planet(mass, color, (x, y), dx, dy, radius)
     )
 
+def drawOrbit(planet : Planet):
+    orbitInGameCoord = []
+    for point in planet.orbit:
+        x = point[0] * SCALE + W/2
+        y = point[1] * SCALE + H/2
+        orbitInGameCoord.append((x, y))
+    pygame.draw.lines(window, planet.color, False, orbitInGameCoord)
+
 def main():
     is_running = True
     mass = 5.9736e24
@@ -99,8 +107,9 @@ def main():
                     createPlanet(mass, pos, currentColor, speed, direction, radius)
 
         for planet in planets:
-            drawPlanet(planet)
             planet.updatePosition(planets)
+            drawPlanet(planet)
+            drawOrbit(planet)
         pygame.draw.circle(window, currentColor, pos, radius)
         end = (pos[0] + speed/50 * cos(direction.value), 
                 pos[1] + speed/50 * sin(direction.value))
