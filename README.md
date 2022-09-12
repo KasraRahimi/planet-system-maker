@@ -11,3 +11,16 @@ __steps to install and play the game__
 1. ``git clone https://github.com/KasraRahimi/planet-system-maker.git``
 2. ``cd planet-system-maker``
 3. ``python run.py`` or ``python3 run.py``
+
+## controls :keyboard:
+* <kbd>w</kbd> - increase planet's speed
+* <kbd>a</kbd> - increment planet's direction counter-clockwise
+* <kbd>s</kbd> - decrease planet's speed
+* <kbd>d</kbd> - increment planet's direction clockwise
+* <kbd>q</kbd> - increase planet's mass
+* <kbd>e</kbd> - decrease planet's mass
+* <kbd>r</kbd> or <kbd>t</kbd> - cycle through colors
+
+## image of the game
+Here is an example of what the game looks like with some planets orbiting each other.
+![screenshot of the game](screenshot.png)
