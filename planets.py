@@ -9,6 +9,7 @@ class Planet:
         self.dx = dx
         self.dy = dy
         self.radius = radius
+        self.orbit = [pos]
     
     @property
     def x(self):
@@ -60,3 +61,7 @@ class Planet:
         x += self.dx * timestep
         y += self.dy * timestep
         self.pos = (x, y)
+        self.orbit.append((x, y))
+        if len(self.orbit) > 480:
+            del self.orbit[0]
+
