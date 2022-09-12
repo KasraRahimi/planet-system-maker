@@ -21,6 +21,6 @@ __steps to install and play the game__
 * <kbd>e</kbd> - decrease planet's mass
 * <kbd>r</kbd> or <kbd>t</kbd> - cycle through colors
 
-## image of the game
+## image of the game :camera:
 Here is an example of what the game looks like with some planets orbiting each other.
 ![screenshot of the game](screenshot.png)
