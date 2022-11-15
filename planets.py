@@ -9,7 +9,7 @@ class Planet:
         self.dx = dx
         self.dy = dy
         self.radius = radius
-        self.orbit = [pos]
+        self.orbit = [pos] #comment
     
     @property
     def x(self):
